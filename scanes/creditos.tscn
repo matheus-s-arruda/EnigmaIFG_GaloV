@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://sprites/menu/Céu.png" type="Texture" id=1]
 [ext_resource path="res://sprites/menu/IFG V F.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://music/Way Home by Tokyo Music Walker .mp3" type="AudioStream" id=5]
 [ext_resource path="res://sprites/logos/cnpq.png" type="Texture" id=6]
 [ext_resource path="res://sprites/logos/ifg-valparaiso.png" type="Texture" id=7]
+[ext_resource path="res://scanes/botao_retornar_menu.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -256,6 +257,7 @@ Agradecimentos Especiais:
 
  Galo 
 Site: galodev.net/
+Matheus Arruda
 
 comunidade godot 
 
@@ -324,3 +326,5 @@ texture = ExtResource( 7 )
 stream = ExtResource( 5 )
 volume_db = -6.058
 autoplay = true
+
+[node name="UI" parent="." instance=ExtResource( 8 )]

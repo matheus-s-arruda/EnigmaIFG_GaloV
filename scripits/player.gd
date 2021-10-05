@@ -9,12 +9,17 @@ const  ATRITO = 900
 onready var animacaoArvore = $AnimationTree
 onready var animacaoEstado = animacaoArvore.get("parameters/playback") 
 
+var imovel = false
+
+func _ready():
+	Singleton.player = self
 
 func _physics_process(delta):
 	var resultante = Vector2.ZERO
-	resultante.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	resultante.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-	resultante = resultante.normalized()
+	if not imovel:
+		resultante.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+		resultante.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+		resultante = resultante.normalized()
 	
 	if resultante != Vector2.ZERO: 
 		animacaoArvore.set("parameters/Andando/blend_position", resultante)
@@ -28,4 +33,4 @@ func _physics_process(delta):
 		animacaoEstado.travel("Parado")
 		velocidade = velocidade.move_toward(Vector2.ZERO, ATRITO * delta)
 	
-	move_and_slide(velocidade)
+	velocidade = move_and_slide(velocidade)

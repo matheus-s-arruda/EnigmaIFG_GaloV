@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://scanes/cenario.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scanes/player.tscn" type="PackedScene" id=2]
@@ -25,6 +25,7 @@
 [ext_resource path="res://sprites/Bonecos/arquivo escondido na firma.png" type="Texture" id=23]
 [ext_resource path="res://sprites/Carta.png" type="Texture" id=24]
 [ext_resource path="res://scripits/carta.gd" type="Script" id=25]
+[ext_resource path="res://scanes/botao_retornar_menu.tscn" type="PackedScene" id=26]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 118.983, 10 )
@@ -292,6 +293,8 @@ text = "Interagir (e)"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="UI" parent="." instance=ExtResource( 26 )]
 
 [connection signal="body_entered" from="carta" to="carta" method="_on_carta_body_entered"]
 [connection signal="body_exited" from="carta" to="carta" method="_on_carta_body_exited"]

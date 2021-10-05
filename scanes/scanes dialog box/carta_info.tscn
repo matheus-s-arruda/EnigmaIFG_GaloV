@@ -50,7 +50,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-dialogPath = "res://dialog/Instrucoes_iniciais.json"
+dialog_name = "Instrucoes_iniciais"
 
 [node name="Name" type="RichTextLabel" parent="CanvasLayer/Dialoog Box"]
 margin_left = 7.0

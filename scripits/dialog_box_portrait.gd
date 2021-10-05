@@ -1,21 +1,26 @@
 extends ColorRect
  
-export var dialogPath = ""
+export var dialog_name = ""
 export(float) var textSpeed = 0.05
  
 var dialog
+var _flag_nexPhrase = false
  
 var phraseNum = 0
 var finished = false
  
 func _ready():
-	get_node('/root/game/node/ysort/player').set_physics_process(false)
+	Singleton.player.imovel = true
 	$Timer.wait_time = textSpeed
 	dialog = getDialog()
-#	assert(dialog, "Dialog not found")
+	
+	#assert(dialog, "Dialog not found")
 	nextPhrase()
  
 func _process(_delta):
+	if dialog != null and _flag_nexPhrase == false:
+		_flag_nexPhrase = true
+	
 	$Indicator.visible = finished
 	if Input.is_action_just_pressed("ui_accept"):
 		if finished:
@@ -24,22 +29,13 @@ func _process(_delta):
 			$Text.visible_characters = len($Text.text)
  
 func getDialog() -> Array:
-	var f = File.new()
-#	assert(f.file_exists(dialogPath), "File path does not exist")
-	
-	f.open(dialogPath, File.READ)
-	var json = f.get_as_text()
-	
-	var output = parse_json(json)
-	
-	if typeof(output) == TYPE_ARRAY:
-		return output
-	else:
-		return []
+	var array = Singleton.dialog(dialog_name)
+	return array
+
  
 func nextPhrase() -> void:
 	if phraseNum >= len(dialog):
-		get_node('/root/game/node/ysort/player').set_physics_process(true)
+		Singleton.player.imovel = false
 		queue_free()
 		return
 	

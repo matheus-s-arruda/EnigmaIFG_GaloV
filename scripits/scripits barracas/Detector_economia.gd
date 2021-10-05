@@ -17,7 +17,7 @@ func _on_Area2D_body_exited(body):
 		can_interact = false
 	pass 
 	
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("interagir") and can_interact == true:
 		$Label1.visible = false
 		$Label2.visible = false 
